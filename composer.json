@@ -3,7 +3,7 @@
     "type": "fuel-package",
     "description": "Extension to Fuel Module class",
     "license": "MIT",
-    "keywords": [""],
+    "keywords": ["fuel", "module", "extension"],
     "homepage": "https://indigophp.com",
     "authors": [
         {
