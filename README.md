@@ -39,9 +39,14 @@ Depending on the examples, here are some scenarios:
 
 If `moda` contains a `Controller_Modb` (according to load order):
 
-1. Uri `moda` will route to `Moda\Controller_Modb` in module `moda`
-2. Uri `moda/modb` will route to `Moda\Controller_Modb` in module `moda`
-3. Uri `moda/modb/modc` will route to `Moda\Controller_Modb` (action `modc`) in module `moda`
+5. Uri `moda` will route to `Moda\Controller_Modb` in module `moda`
+6. Uri `moda/modb` will route to `Moda\Controller_Modb` in module `moda`
+7. Uri `moda/modb/modc` will route to `Moda\Controller_Modb` (action `modc`) in module `moda`
+
+
+If no match is found it will fall back to the last matched module:
+
+8. Uri `moda/modb/fake` will route to `Moda\Modb\Controller_Modb` (action `fake`) in module `modb`
 
 
 ## Extending classes
