@@ -1,0 +1,22 @@
+{
+    "name": "indigophp/fuel-module",
+    "type": "fuel-package",
+    "description": "",
+    "license": "MIT",
+    "keywords": [""],
+    "homepage": "https://indigophp.com",
+    "authors": [
+        {
+            "name": "Márk Sági-Kazár",
+            "email": "mark.sagikazar@gmail.com"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0"
+    },
+    "extra": {
+        "installer-name": "module"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
