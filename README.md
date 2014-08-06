@@ -44,7 +44,7 @@ If `moda` contains a `Controller_Modb` (according to load order):
 7. Uri `moda/modb/modc` will route to `Moda\Controller_Modb` (action `modc`) in module `moda`
 
 
-If no match is found it will fall back to the last matched module:
+Fallbacks are processed in a reverse order:
 
 8. Uri `moda/modb/fake` will route to `Moda\Modb\Controller_Modb` (action `fake`) in module `modb`
 

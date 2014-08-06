@@ -27,8 +27,8 @@ class Router extends \Fuel\Core\Router
 	{
 		$namespace = '';
 		$segments = $match->segments;
-		$module = false;
 		$info = false;
+		$fallback = false;
 
 		// check the loaded modules
 		foreach (\Module::loaded() as $module => $path)
@@ -40,21 +40,31 @@ class Router extends \Fuel\Core\Router
 			{
 				$segments = explode('/', ltrim(substr($match->translation, strlen($prefix)), '/'));
 				$namespace = \Module::get_namespace($module).'\\';
-				$match->module = $module;
 
 				// did we find a match
 				if ($info = static::parse_segments($segments, $namespace))
 				{
+					// set active module
+					$match->module = $module;
+
 					// then stop looking
 					break;
+				}
+				// or do we have a fallback
+				elseif ($info = static::parse_segments($segments, $namespace, \Module::get_controller($module)))
+				{
+					// set active module
+					$match->module = $module;
+
+					// save it for later
+					$fallback = $info;
+					$info = false;
 				}
 			}
 		}
 
-		$controller = \Module::get_controller($module);
-
 		// process info or fall back
-		if ($info or $info = static::parse_segments($segments, $namespace, $controller))
+		if ($info or $info = $fallback)
 		{
 			$match->controller = $info['controller'];
 			$match->action = $info['action'];
