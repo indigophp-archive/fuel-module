@@ -64,7 +64,7 @@ class Router extends \Fuel\Core\Router
 		}
 
 		// process info or fall back
-		if ($info or $info = $fallback)
+		if ($info or $info = $fallback or $info = static::parse_segments($match->segments, ''))
 		{
 			$match->controller = $info['controller'];
 			$match->action = $info['action'];
