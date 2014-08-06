@@ -27,6 +27,7 @@ class Router extends \Fuel\Core\Router
 	{
 		$namespace = '';
 		$segments = $match->segments;
+		$uri = implode('/', $match->segments);
 		$info = false;
 		$fallback = false;
 
@@ -36,9 +37,9 @@ class Router extends \Fuel\Core\Router
 			$prefix = \Module::get_prefix($module);
 
 			// and route it if matches the uri
-			if (strpos($match->translation, $prefix) === 0)
+			if (strpos($uri, $prefix) === 0)
 			{
-				$segments = explode('/', ltrim(substr($match->translation, strlen($prefix)), '/'));
+				$segments = explode('/', ltrim(substr($uri, strlen($prefix)), '/'));
 				$namespace = \Module::get_namespace($module).'\\';
 
 				// did we find a match
