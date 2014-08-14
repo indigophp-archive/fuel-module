@@ -19,6 +19,8 @@ Via Composer
 }
 ```
 
+**Note:** This package cannot be used with `indigophp/fuel-core <1.0.3`.
+
 
 ## Usage
 
