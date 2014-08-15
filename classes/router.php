@@ -31,14 +31,19 @@ class Router extends \Fuel\Core\Router
 		$info = false;
 		$fallback = false;
 
-		// check the loaded modules
-		foreach (\Module::loaded() as $module => $path)
+		// check all modules
+		// this might be a bigger performance hit since it is called twice
+		foreach (\Module::all() as $module)
 		{
 			$prefix = \Module::get_prefix($module);
 
 			// and route it if matches the uri
 			if (strpos($uri, $prefix) === 0)
 			{
+				// load it
+				// (makes sure the module is loaded if the match belongs to an unloaded module)
+				\Module::load($module);
+
 				$segments = explode('/', ltrim(substr($uri, strlen($prefix)), '/'));
 				$namespace = \Module::get_namespace($module).'\\';
 
